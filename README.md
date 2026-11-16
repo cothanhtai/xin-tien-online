@@ -26,7 +26,23 @@ rồi chơi tại `https://<tên-github>.github.io/xin-tien-online/`.
 3. TikTok LIVE Studio → chế độ dọc → thêm nguồn **Link/Browser** → chọn `live-mode.html`, kích thước 1080 × 1920.
 4. Bấm **Ẩn bảng** (phím `C`) trước khi lên sóng.
 
-Phím tắt: `Space` chìa chén · `V` mở vote · `R` mưa tiền · `C` ẩn/hiện bảng điều khiển.
+Phím tắt: `Space` chìa chén · `V` mở vote · `R` mưa tiền · `M` bật/tắt nhạc · `N` bài tiếp · `C` ẩn/hiện bảng điều khiển.
+
+### Người xem tương tác bằng comment
+
+| Gõ | Kết quả |
+|---|---|
+| Comment bất kỳ | Nhân vật mang tên người xem đi ngang chén |
+| `cho`, `lì xì` | Nhân vật dừng lại thả tiền ảo, được gọi tên cảm ơn |
+| `!nam` `!nu` `!ba` `!ong` | Chọn nhân vật riêng, game xưng hô anh/chị/bà/ông |
+| `1` / `2` | Vote sự kiện khi có bảng vote |
+| Thả tim | Đầy thanh lòng thương thì mưa tiền |
+| Tặng quà | Nhân vật mang hộp quà tới chén; quà lớn đi xe Mẹc có tên |
+
+### Nhạc nền
+
+Có sẵn 4 bài đàn tranh tự tạo trong trình duyệt (giai điệu ngũ cung tự sáng tác, không dùng bản thu có bản quyền).
+Có thể chọn file mp3 của bạn trong bảng điều khiển; file chỉ phát trên máy, không đưa lên GitHub.
 
 ### Dự phòng không dùng TikFinity (không chạy cùng lúc với TikFinity)
 
