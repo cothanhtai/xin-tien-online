@@ -33,6 +33,11 @@ body{background:var(--asphalt);color:var(--cream);font-family:var(--body);overfl
 .howto{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .howto div{background:var(--glass);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;padding:6px 4px;text-align:center;font-size:11.5px;line-height:1.25;color:var(--muted)}
 .howto b{display:block;font-family:var(--display);font-size:17px;color:var(--cream);line-height:1.1}
+.roles{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;background:var(--glass);backdrop-filter:blur(6px);border:1px solid var(--lamp);border-radius:12px;padding:5px 8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.roles code{font-family:var(--display);font-weight:800;font-size:15px;color:var(--lamp);background:rgba(0,0,0,.25);border-radius:7px;padding:0 6px}
+.roles.flash{animation:rflash .6s ease-in-out 3}
+@keyframes rflash{50%{border-color:var(--cream);box-shadow:0 0 18px rgba(255,207,74,.6)}}
+.walker.f .tag{background:var(--pink)}
 
 .scene{position:relative;height:500px;flex:none;margin:0 -16px;overflow:hidden}
 .rain{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .6s;z-index:6;
@@ -41,30 +46,33 @@ body{background:var(--asphalt);color:var(--cream);font-family:var(--body);overfl
 @keyframes rain{to{background-position:-12px 40px}}
 .scene.gold{box-shadow:inset 0 0 80px rgba(255,207,74,.55)}
 
-.walker{position:absolute;display:flex;flex-direction:column;align-items:center;gap:2px;z-index:3;pointer-events:none}
-.walker .em{font-size:46px;line-height:1;filter:drop-shadow(0 4px 2px rgba(0,0,0,.4));animation:bob .45s ease-in-out infinite alternate}
+.walker{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;z-index:5;pointer-events:none}
+.car .tag{font-size:15px;font-weight:700;border-radius:8px;padding:2px 10px;white-space:nowrap;font-family:var(--body);box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.walker .em{font-size:62px;line-height:1;filter:drop-shadow(0 4px 2px rgba(0,0,0,.4));animation:bob .45s ease-in-out infinite alternate}
 .walker.flip .em{transform:scaleX(-1)}
-.walker .tag{font-size:12px;font-weight:700;background:var(--plastic);color:#fff;border-radius:7px;padding:1px 7px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.walker .tag{font-size:14px;font-weight:700;background:var(--plastic);color:#fff;border-radius:8px;padding:2px 9px;max-width:150px;box-shadow:0 2px 0 rgba(0,0,0,.35);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .walker.giver .tag{background:var(--leaf);color:#0c2b18}
+.walker.gifter .tag,.car .tag{background:var(--lamp);color:#2a2000}
+.walker .gift{font-size:30px;line-height:1;animation:bob .35s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px rgba(255,207,74,.8))}
 .walker .say{font-size:12px;font-weight:600;background:var(--cream);color:#2a2238;border-radius:10px;padding:3px 8px;max-width:170px;line-height:1.25;text-align:center;overflow-wrap:anywhere}
 @keyframes bob{to{translate:0 -4px}}
 
-.beggar{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:170px;height:170px;z-index:2;cursor:pointer;border:0;background:none;padding:0}
+.beggar{position:absolute;left:50%;bottom:150px;transform:translateX(-50%);width:140px;height:140px;z-index:2;cursor:pointer;border:0;background:none;padding:0}
 .beggar svg{width:100%;height:100%;overflow:visible}
 .beggar.bump svg{animation:bump .2s}
 @keyframes bump{50%{transform:scale(1.07) rotate(-2deg)}}
-.prop{position:absolute;bottom:26px;font-size:40px;z-index:2;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4))}
-.bubble{position:absolute;left:50%;bottom:238px;transform:translateX(-50%);max-width:80%;background:var(--cream);color:#2a2238;font-weight:700;font-size:15px;line-height:1.3;padding:8px 14px;border-radius:16px;text-align:center;opacity:0;transition:opacity .2s;z-index:5;text-wrap:balance}
+.prop{position:absolute;bottom:154px;font-size:30px;z-index:2;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4))}
+.bubble{position:absolute;left:50%;bottom:300px;transform:translateX(-50%);max-width:80%;background:var(--cream);color:#2a2238;font-weight:700;font-size:15px;line-height:1.3;padding:8px 14px;border-radius:16px;text-align:center;opacity:0;transition:opacity .2s;z-index:5;text-wrap:balance}
 .bubble::after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:var(--cream)}
 .bubble.on{opacity:1}
 .float{position:absolute;font-family:var(--display);font-weight:800;font-size:20px;color:var(--lamp);text-shadow:0 2px 0 #000;pointer-events:none;animation:up 1.2s ease-out forwards;white-space:nowrap;z-index:7}
 @keyframes up{to{transform:translateY(-70px);opacity:0}}
 .drop{position:absolute;top:-50px;font-size:32px;z-index:6;animation:fall linear forwards;pointer-events:none}
 @keyframes fall{to{transform:translateY(560px) rotate(200deg)}}
-.car{position:absolute;bottom:120px;font-size:70px;z-index:4;filter:drop-shadow(0 6px 3px rgba(0,0,0,.5))}
+.car{position:absolute;bottom:40px;font-size:70px;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;z-index:4;filter:drop-shadow(0 6px 3px rgba(0,0,0,.5))}
 .banner{position:absolute;left:16px;right:16px;top:12px;background:rgba(20,24,41,.88);border:2px solid var(--lamp);border-radius:14px;padding:8px 12px;font-size:15px;font-weight:700;line-height:1.3;z-index:8;text-align:center}
 .banner small{display:block;font-weight:600;color:var(--muted);font-size:12px}
-.total{position:absolute;right:16px;bottom:12px;text-align:right;z-index:5;background:rgba(20,24,41,.85);border-radius:12px;padding:6px 10px;font-size:11px;color:var(--muted);line-height:1.2}
+.total{position:absolute;right:16px;top:12px;text-align:right;z-index:4;background:rgba(20,24,41,.85);border-radius:12px;padding:6px 10px;font-size:11px;color:var(--muted);line-height:1.2}
 .total b{display:block;font-family:var(--display);font-size:22px;color:var(--lamp);font-variant-numeric:tabular-nums}
 
 .vote{position:absolute;left:16px;right:16px;top:12px;z-index:9;background:rgba(20,24,41,.94);border:2px solid var(--plastic);border-radius:16px;padding:10px 12px}
@@ -163,14 +171,15 @@ button:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
     <div><b>Thả tim</b>làm mưa tiền</div>
     <div><b>Gõ 1 / 2</b>khi có vote</div>
   </div>
+  <div class="roles" id="roles">Chọn nhân vật: <code>!nam</code><code>!nu</code><code>!ba</code><code>!ong</code></div>
 
   <div class="scene" id="scene">
         <div class="rain"></div>
     <div class="banner" id="banner" hidden></div>
     <div class="vote" id="vote" hidden></div>
     <div class="bubble" id="bubble"></div>
-    <span class="prop" style="left:calc(50% - 200px)">🐕</span>
-    <span class="prop" style="left:calc(50% - 145px)">🎸</span>
+    <span class="prop" style="left:calc(50% - 112px)">🐕</span>
+    <span class="prop" style="left:calc(50% + 70px)">🎸</span>
     <button class="beggar" id="beggar" aria-label="Host chìa chén">
       <svg viewBox="0 0 150 150" aria-hidden="true">
         <ellipse cx="75" cy="142" rx="56" ry="7" fill="#000" opacity=".3"/>
@@ -238,7 +247,7 @@ button:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
   <label>Thử nghiệm (hiện nhãn CHẾ ĐỘ THỬ)</label>
   <div class="btns">
     <button id="tChat">Comment</button><button id="tCho">Comment "cho"</button><button id="tLike">+50 tim</button>
-    <button id="tGift">Quà nhỏ</button><button id="tBig">Quà lớn</button><button id="tFollow">Follow</button>
+    <button id="tGift">Quà nhỏ</button><button id="tBig">Quà lớn</button><button id="tFollow">Follow</button><button id="tRole">Gõ !nu / !nam</button>
     <button class="warn" id="tAuto">Người xem giả: tắt</button>
   </div>
   <div class="note">Đừng bật người xem giả khi đang live thật. Ẩn bảng này trước khi lên sóng; vẫn bấm được chén và phím tắt.</div>
@@ -262,7 +271,7 @@ const fit=()=>{const s=Math.min(innerWidth/540,innerHeight/960);$('#stage').styl
 const KEY='chen-inox-live-v1';
 let total=0;try{total=+localStorage.getItem(KEY)||0}catch(e){}
 const saveTotal=()=>{try{localStorage.setItem(KEY,String(Math.floor(total)))}catch(e){}};
-const add=v=>{total+=v;$('#total').textContent=fmt(total);saveTotal()};add(0);
+const add=v=>{if(!isFinite(v))return;total+=v;$('#total').textContent=fmt(total);saveTotal()};add(0);
 
 /* audio */
 let AC=null,muted=false;
@@ -273,12 +282,17 @@ const fanfare=()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>blip(f,.15,'t
 /* helpers */
 const scene=$('#scene');
 const float=(txt,x,y,c)=>{const el=document.createElement('div');el.className='float';el.textContent=txt;el.style.left=x+'px';el.style.top=y+'px';if(c)el.style.color=c;scene.appendChild(el);setTimeout(()=>el.remove(),1200)};
-let bubT;const say=t=>{const b=$('#bubble');b.textContent=t;b.classList.add('on');clearTimeout(bubT);bubT=setTimeout(()=>b.classList.remove('on'),2600)};
+let bubT;const say=t=>{const b=$('#bubble');b.textContent=t;b.classList.add('on');clearTimeout(bubT);bubT=setTimeout(()=>b.classList.remove('on'),Math.max(2600,t.length*60))};
 let bannerT;const banner=(t,sub,sec=5)=>{const b=$('#banner');b.innerHTML='';b.append(t);if(sub){const s=document.createElement('small');s.textContent=sub;b.append(s)}b.hidden=false;clearTimeout(bannerT);bannerT=setTimeout(()=>b.hidden=true,sec*1000)};
 const feedItems=[];const feed=(name,txt)=>{feedItems.unshift([name,txt]);feedItems.length=Math.min(feedItems.length,7);const f=$('#feed');f.innerHTML='';feedItems.forEach(([n,t])=>{const p=document.createElement('p');if(n){const b=document.createElement('b');b.textContent=n+' ';p.append(b)}p.append(t);f.append(p)})};
 const dropRain=(n,icons,valFn)=>{for(let i=0;i<n;i++)setTimeout(()=>{const d=document.createElement('div');d.className='drop';d.textContent=pick(icons);d.style.left=rnd(10,500)+'px';d.style.animationDuration=rnd(2.4,3.6)+'s';scene.appendChild(d);d.addEventListener('animationend',()=>{d.remove();if(valFn){add(valFn());}})},i*rnd(80,220))};
 
-const BEG=['Cho con xin ít vía giàu đi cô ơi!','Xin không phải vì nghèo, xin vì đam mê!','Chén còn trống chỗ nè, mời quý khách!','Cuối tháng rồi, ai cũng nghèo như nhau mà...','Tiền đâu, tiền đâu, mau vô chén!','Lòng tốt của bạn sẽ được ghi vào sổ Nam Tào!'];
+const BEG=["Lạy ông đi qua, lạy bà đi lại, cho con xin ít vía giàu, vía sang, vía đẹp trai!", "Lạy cô bác gần xa, cho con xin miếng lộc, con hứa không xài vô trà sữa... nhiều đâu!", "Một đồng không nhiều, mười đồng không ít, trăm đồng là con khóc luôn á!", "Chén inox sáng bóng đang chờ người tốt bụng nè!", "Xin không phải vì nghèo, xin vì đam mê!", "Tiền vô như nước sông Đà, tiền ra nhỏ giọt như cà phê phin!", "Cho con xin chút đỉnh, Nam Tào ghi sổ, Bắc Đẩu đóng mộc liền!", "Ai cho con một đồng, con chúc người đó cả năm không kẹt xe!", "Cuối tháng rồi, ví con với chén con giống nhau: trống trơn!", "Cho con xin ít vía giàu, con giữ giùm cho, hứa không làm mất!", "Cho con xin để mua vé số, trúng con chia đôi... à chia ba!", "Tiền ơi tiền à, mau mau vô chén, đừng để con chờ lâu!", "Đi ngang không cho cũng được, nhưng cười với con một cái nha!", "Chó Lu nhìn quý khách bằng ánh mắt long lanh nè, nỡ lòng nào đi luôn!", "Không có tiền lẻ thì cho tiền chẵn, con thối lại bằng nụ cười!"];
+const PITCH={"nu": ["{N} xinh đẹp ơi! Nhan sắc ăn đứt hoa hậu rồi, giờ cho em ăn thêm ổ bánh mì nha!", "Trời ơi {n} đi ngang mà em tưởng tiên giáng trần! Tiên cho em xin ít lộc đi!", "{N} cho em xin 1 ngàn, em khen {n} đẹp miễn phí nguyên năm!", "{N} cười một cái là chén em sáng bừng, cho thêm chút là sáng luôn tương lai!", "{N} xinh như mộng, chắc ví cũng dày như mộng ha?", "{N} ơi son đẹp quá trời! Cho em xin tiền mua ổ bánh mì thôi, hông mua son đâu!", "Gió đưa {n} tới đây là có duyên rồi, cho em xin chút lộc giữ duyên nha!"], "nam": ["{N} mạnh mẽ ơi! Tay to vậy chắc nắm được nhiều tiền lắm, chia em chút!", "{N} 6 múi ơi, cho em xin 1 múi... tiền thôi!", "{N} đẹp trai phong độ quá, cho em xin ít vía để mai em đẹp trai giống vậy!", "{N} ơi, đàn ông phải biết thương người yếu đuối... là em nè!", "{N} đi ngang làm vỉa hè rung chuyển, rung luôn cái ví ra chút đi!", "{N} cho em xin đi, em hứa không kể với vợ {n} đâu!", "{N} ngầu dữ vậy, chắc cho tiền cũng ngầu lắm ha!"], "ba": ["Con lạy {n}! {N} đi chậm thôi cho con xin chút lộc, con chúc {n} sống lâu trăm tuổi!", "{N} ơi, nhìn {n} trẻ như mới 18, cho con xin tiền mua kẹo nha!", "{N} ơi, con ngồi đây từ sáng, {n} thương con như cháu nội đi!", "{N} cho con xin, con hứa về ngoan, học giỏi, chăm làm!"], "ong": ["{N} ơi, {n} khỏe như trâu, cho con xin ít sức khỏe với ít tiền luôn!", "Con lạy {n}! {N} phong độ hơn mấy anh trẻ, cho con xin chút lộc nha!", "{N} ơi, hồi xưa chắc {n} cũng từng nghèo ha, thương con chút đi!", "{N} cho con xin, con chịu thua {n} ba ván cờ tướng liền!"], "x": ["{N} ơi, đi ngang cho tui xin ít vía giàu nha!", "{N} dễ thương quá, cho tui xin chút lộc lấy hên!", "Ê {n}! Chén còn trống chỗ nè, ghé chơi đi!", "{N} ơi, gõ !nam hay !nu cho tui biết đường mà khen nha!", "{N} ơi, cho tui xin một nụ cười, có tiền thì càng tốt!"]};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const pitch=(role,n)=>pick(PITCH[role]||PITCH.x).replaceAll('{N}',cap(n)).replaceAll('{n}',n);
+let lastPitch=0;
+const pitchTo=n=>{if(Date.now()-lastPitch<4500||BG().classList.contains('sleepy'))return;lastPitch=Date.now();say(pitch(roles.get(n),roles.has(n)?hon(n):n))};
 const THANKS=['Cảm ơn {n}, chúc {n} hốt bạc!','{n} dễ thương quá trời!','Ghi sổ Nam Tào: {n} tốt bụng!','{n} cho rồi, ai cho nữa hông?','Vía giàu của {n} bay vô chén rồi!'];
 const PASS=['{n} đi ngang, liếc cái chén rồi đi tiếp','{n} ghé ngang hỏi đường','{n} nói: tui cũng đang nghèo nè','{n} chụp hình check-in với chén','{n} để chuyển khoản sau (chắc vậy)'];
 const PEOPLE=['🚶','🚶‍♀️','👵','👴','🧑‍💼','👩‍🎓','🧑‍🍳','👷','💃','🧑‍🎤','🕺','🧑‍🚀','🥷','🧙'];
@@ -286,20 +300,33 @@ const hash=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return Math.a
 
 /* walkers */
 const queue=[];let onScreen=0;const MAX=7;
-function walk(name,comment,give){queue.push([name,comment,give]);if(queue.length>25)queue.splice(0,queue.length-25)}
+const ROLE={
+ nam:{label:'anh chàng',ho:'anh',em:['🚶‍♂️','👨‍💼','👨‍🍳','👷‍♂️','🕺','👨‍🎤','🧔']},
+ nu:{label:'cô gái',ho:'chị',f:1,em:['🚶‍♀️','👩‍💼','👩‍🍳','👷‍♀️','💃','👩‍🎓','👩‍🎤']},
+ ba:{label:'bà cụ',ho:'bà',f:1,em:['👵']},
+ ong:{label:'ông cụ',ho:'ông',em:['👴']}};
+const roles=new Map();
+const hon=n=>{const r=ROLE[roles.get(n)];return r?r.ho+' '+n:n};
+const avatar=n=>{const r=ROLE[roles.get(n)];return r?r.em[hash(n)%r.em.length]:PEOPLE[hash(n)%PEOPLE.length]};
+setInterval(()=>{if(vote)return;const r=$('#roles');r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash');
+  if(!BG().classList.contains('sleepy'))say(pick(['Cả xóm gõ !nam hoặc !nu để chọn nhân vật nha!','Gõ !ba hoặc !ong là thành ông bà cụ đi ngang nè!','Ai chưa chọn nhân vật thì gõ !nam / !nu nha!']))},75000);
+function walk(name,comment,give,front){if(front)queue.unshift([name,comment,give]);else queue.push([name,comment,give]);if(queue.length>25)queue.splice(0,queue.length-25)}
 function spawnNext(){if(!queue.length||onScreen>=MAX)return;const [name,comment,give]=queue.shift();onScreen++;
-  const w=document.createElement('div');w.className='walker'+(give?' giver':'');
+  const w=document.createElement('div');const gift=give&&give.gift?give:null;w.className='walker'+(give?' giver':'')+(gift?' gifter':'');
+  if(gift){const g=document.createElement('div');g.className='gift';g.textContent='🎁';w.append(g)}
   if(comment){const s=document.createElement('div');s.className='say';s.textContent=comment.length>40?comment.slice(0,40)+'…':comment;w.append(s)}
-  const em=document.createElement('div');em.className='em';em.textContent=PEOPLE[hash(name)%PEOPLE.length];w.append(em);
   const t=document.createElement('div');t.className='tag';t.textContent=name;w.append(t);
+  const em=document.createElement('div');em.className='em';em.textContent=avatar(name);w.append(em);if(ROLE[roles.get(name)]&&ROLE[roles.get(name)].f)w.classList.add('f');
   const rtl=Math.random()<.5;if(!rtl)w.classList.add('flip');
-  w.style.bottom=(give?160:pick([160,200]))+'px';scene.appendChild(w);
+  lane^=1;const btm=give?8:(lane?6:58);w.style.bottom=btm+'px';w.style.zIndex=btm<20?6:5;scene.appendChild(w);
   const W=540,from=rtl?W+20:-150,to=rtl?-170:W+20,mid=W/2-50;
   const frames=give?[{left:from+'px'},{left:mid+'px',offset:.42},{left:mid+'px',offset:.62},{left:to+'px'}]:[{left:from+'px'},{left:to+'px'}];
-  const a=w.animate(frames,{duration:give?8500:rnd(6000,8000),easing:'linear'});
-  if(give)setTimeout(()=>{const v=Math.round(rnd(1,20))*1000;add(v);float('+'+fmt(v),mid+30,300);coin();say(pick(THANKS).replaceAll('{n}',name));bump()},8500*.48);
+  const dur=give?8500:rnd(6000,8000);const a=w.animate(frames,{duration:dur,easing:'linear'});
+  if(give&&!gift)setTimeout(()=>{lastPitch=0;pitchTo(name)},1900);else if(Math.random()<.4)setTimeout(()=>pitchTo(name),dur*.4);
+  if(gift)setTimeout(()=>{const v=gift.val*1000;add(v);float('🎁 +'+fmt(v),mid+20,220);banner('Cảm ơn '+hon(name)+'!','Đã gửi '+gift.gift,4);dropRain(Math.min(6+gift.val,20),['💖','✨','🪙']);say(pick(THANKS).replaceAll('{n}',hon(name)));fanfare();bump()},8500*.48);
+  else if(give)setTimeout(()=>{const v=Math.round(rnd(1,20))*1000;add(v);float('+'+fmt(v),mid+40,220);coin();say(pick(THANKS).replaceAll('{n}',hon(name)));bump()},8500*.48);
   a.onfinish=()=>{w.remove();onScreen--}}
-setInterval(spawnNext,550);
+let lane=0;setInterval(spawnNext,1000);
 
 /* leaderboard by comments (not gifts) */
 const counts=new Map();
@@ -338,9 +365,9 @@ function runEvent(id,label){feed('','Cả xóm chọn: '+label);fanfare();
   if(id==='car')drive('Đại gia đi ngang','');
   if(id==='wind'){banner('Gió thổi bay tiền!','Tiền ai đó bay tới chén',6);dropRain(16,['💵','🪙'],()=>rnd(500,2500))}}
 
-function drive(title,sub){const c=document.createElement('div');c.className='car';c.textContent='🚘';scene.appendChild(c);banner(title,sub||'Mẹc dừng lại, kính hạ xuống...',6);
+function drive(title,sub,who){const c=document.createElement('div');c.className='car';if(who){const t=document.createElement('div');t.className='tag';t.textContent=who;c.append(t)}c.append('🚘');scene.appendChild(c);banner(title,sub||'Mẹc dừng lại, kính hạ xuống...',6);
   const a=c.animate([{left:'560px'},{left:'200px',offset:.4},{left:'200px',offset:.65},{left:'-120px'}],{duration:5500,easing:'ease-in-out'});
-  setTimeout(()=>{const v=Math.round(rnd(50,200))*1000;add(v);float('+'+fmt(v),230,280,'#47c27a');say('Đại gia: "Cầm hết đi em, anh dư!"');fanfare()},2600);a.onfinish=()=>c.remove()}
+  setTimeout(()=>{const v=Math.round(rnd(50,200))*1000;add(v);float('+'+fmt(v),230,280,'#47c27a');say((who?'Đại gia '+hon(who):'Đại gia')+': "Cầm hết đi em, dư mà!"');fanfare()},2600);a.onfinish=()=>c.remove()}
 
 const bump=()=>{const b=$('#beggar');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');mood('happy',700)};
 
@@ -351,16 +378,20 @@ function handle(ev,d){d=d||{};ev=(ev||"").toLowerCase();wake();
   if(ev==='chat'||ev==='comment'){const text=(d.comment||d.text||'').toString();const t=norm(text);
     counts.set(name,(counts.get(name)||0)+1);renderLB();
     if(vote&&(t==='1'||t==='2')){castVote(name,+t-1);return}
+    const cmd=t.replace(/^[!#/.]\s*/,'').replace(/\s+/g,'');
+    if(ROLE[cmd]&&t.length<=8){const r=ROLE[cmd];const first=!roles.has(name);roles.set(name,cmd);
+      walk(name,'Tui là '+r.label+' nè!',false);feed(name,(first?'chọn':'đổi sang')+' nhân vật '+r.label);
+      if(first&&Math.random()<.5)say('Chào '+r.ho+' '+name+' nha!');return}
     const give=/\b(cho|li xi|lixi|tang chen|bo chen)\b/.test(t);
     walk(name,text,give);
-    if(give)feed(name,'thả tiền vô chén');else if(Math.random()<.35)feed('',pick(PASS).replace('{n}',name));
+    if(give)feed(hon(name),'thả tiền vô chén');else if(Math.random()<.35)feed('',pick(PASS).replace('{n}',name));
   }else if(ev==='like'){const n=+(d.likeCount||d.count||1);likes(n);if(n>=15)feed(name,'thả '+n+' tim');float('❤',rnd(380,500),rnd(60,200),'#ff5c8a')}
   else if(ev==='gift'){if(d.giftType===1&&d.repeatEnd===false)return;
     const key=(d.msgId||'')+name+(d.giftName||'')+(d.repeatCount||'');if(d.msgId&&seen.has(key))return;seen.add(key);
     const val=(+d.diamondCount||1)*(+d.repeatCount||1);const gname=(d.giftName||'quà').toString();
     feed(name,'gửi '+gname+(d.repeatCount>1?' x'+d.repeatCount:''));
-    if(val>=100)drive('Cảm ơn '+name+'!','Đại gia '+name+' ghé ngang bằng Mẹc');
-    else{banner('Cảm ơn '+name+'!','Đã gửi '+gname,4);dropRain(Math.min(6+val,20),['💖','✨','🪙']);coin()}}
+    if(val>=100)drive('Cảm ơn '+hon(name)+'!','Đại gia '+name+' ghé ngang bằng Mẹc',name);
+    else{walk(name,'Tặng '+gname+' nè!',{gift:gname,val},true);coin()}}
   else if(ev==='follow'){feed(name,'vừa dọn về hẻm (follow)');banner('Chào hàng xóm mới: '+name,'',3);blip(784,.12,'triangle')}
   else if(ev==='share'){feed(name,'rủ thêm người tới xóm (share)');say(name+' đi rủ cả xóm tới coi nè!')}
   else if(ev==='member'||ev==='join'){if(Math.random()<.3)feed(name,'vừa ghé hẻm')}
@@ -392,7 +423,7 @@ addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;const k=e.ke
 
 /* test tools — always flagged on stream */
 const NAMES=['Minh Thư','Tuấn Kiệt','Bé Na','Chú Bảy','Hải Đăng','Ngọc Hân','Anh Ba Xe Ôm','Lan Chi','Khoa Pug','Cô Út'];
-const CMTS=['xin chào cả nhà','chén đẹp quá','cho nè','1','2','hát bài khác đi','cho 5 ngàn nè','haha dễ thương','chó Lu cute','lì xì nè'];
+const CMTS=['xin chào cả nhà','!nu','!nam','!ba','chén đẹp quá','cho nè','1','2','hát bài khác đi','cho 5 ngàn nè','haha dễ thương','chó Lu cute','lì xì nè'];
 const demo=(ev,d)=>{demoUsed=true;setStatus();handle(ev,d)};
 $('#tChat').onclick=()=>demo('chat',{nickname:pick(NAMES),comment:pick(['chào cả xóm','chén inox xịn ghê','hát đi anh ơi'])});
 $('#tCho').onclick=()=>demo('chat',{nickname:pick(NAMES),comment:'cho nè'});
@@ -400,6 +431,7 @@ $('#tLike').onclick=()=>demo('like',{nickname:pick(NAMES),likeCount:50});
 $('#tGift').onclick=()=>demo('gift',{nickname:pick(NAMES),giftName:'Hoa hồng',diamondCount:1,repeatCount:1,giftType:1,repeatEnd:true});
 $('#tBig').onclick=()=>demo('gift',{nickname:pick(NAMES),giftName:'Vũ trụ',diamondCount:500,repeatCount:1});
 $('#tFollow').onclick=()=>demo('follow',{nickname:pick(NAMES)});
+$('#tRole').onclick=()=>demo('chat',{nickname:pick(NAMES),comment:pick(['!nu','!nam','!ba','!ong','!Nữ','nam'])});
 let autoT=null;$('#tAuto').onclick=e=>{if(autoT){clearInterval(autoT);autoT=null;e.target.textContent='Người xem giả: tắt';return}
   e.target.textContent='Người xem giả: BẬT';autoT=setInterval(()=>{const r=Math.random();if(r<.65)demo('chat',{nickname:pick(NAMES),comment:pick(CMTS)});else if(r<.95)demo('like',{nickname:pick(NAMES),likeCount:Math.ceil(rnd(5,40))});else demo('gift',{nickname:pick(NAMES),giftName:'Hoa hồng',diamondCount:1,repeatCount:1})},900)};
 })();

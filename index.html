@@ -47,19 +47,22 @@ button:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
 .scene.raining .rain{opacity:1}
 @keyframes rain{to{background-position:-12px 40px}}
 
-.passer{position:absolute;bottom:118px;font-size:42px;line-height:1;border:0;background:none;padding:4px;filter:drop-shadow(0 4px 2px rgba(0,0,0,.4))}
-.passer.walk{animation:bob .5s ease-in-out infinite alternate}
-.passer.done{opacity:.45;pointer-events:none}
-.passer .ask{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:11px;font-family:var(--body);font-weight:700;background:var(--lamp);color:#2a2000;border-radius:8px;padding:1px 6px;white-space:nowrap}
+.passer{position:absolute;bottom:18px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;border:0;background:none;padding:4px;font-family:var(--body)}
+.passer .pem{display:block;font-size:52px;filter:drop-shadow(0 5px 3px rgba(0,0,0,.45))}
+.passer.flip .pem{transform:scaleX(-1)}
+.passer.walk .pem{animation:bob .5s ease-in-out infinite alternate}
+.passer.done{opacity:.5;pointer-events:none}
+.passer .pnm{font-size:11px;font-weight:700;background:var(--plastic);color:#fff;border-radius:7px;padding:2px 7px;white-space:nowrap;box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.passer .ask{font-size:11px;font-weight:800;background:var(--lamp);color:#2a2000;border-radius:8px;padding:1px 7px;white-space:nowrap}
 @keyframes bob{to{translate:0 -4px}}
 
-.beggar{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);border:0;background:none;padding:0;width:150px;height:150px}
+.beggar{position:absolute;left:50%;bottom:116px;transform:translateX(-50%);border:0;background:none;padding:0;width:118px;height:118px;z-index:2}
 .beggar svg{width:100%;height:100%;overflow:visible}
 .beggar:active svg{transform:scale(.95)}
 .beggar.bump svg{animation:bump .18s}
 @keyframes bump{50%{transform:scale(1.07) rotate(-2deg)}}
 .prop{position:absolute;bottom:22px;font-size:34px;line-height:1;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4));pointer-events:none}
-.bubble{position:absolute;left:50%;bottom:168px;transform:translateX(-50%);max-width:82%;background:var(--cream);color:#2a2238;font-weight:700;font-size:.82rem;line-height:1.3;padding:7px 12px;border-radius:14px;text-align:center;opacity:0;transition:opacity .2s;pointer-events:none;text-wrap:balance}
+.bubble{position:absolute;left:50%;bottom:246px;z-index:5;transform:translateX(-50%);max-width:82%;background:var(--cream);color:#2a2238;font-weight:700;font-size:.82rem;line-height:1.3;padding:7px 12px;border-radius:14px;text-align:center;opacity:0;transition:opacity .2s;pointer-events:none;text-wrap:balance}
 .bubble::after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-7px;border:7px solid transparent;border-bottom:0;border-top-color:var(--cream)}
 .bubble.on{opacity:1}
 .float{position:absolute;font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--lamp);text-shadow:0 2px 0 #000;pointer-events:none;animation:up 1s ease-out forwards;white-space:nowrap}
@@ -161,10 +164,10 @@ button:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
     <div class="combo" id="combo">x1</div>
     <div class="banner" id="banner" hidden></div>
     <div class="bubble" id="bubble"></div>
-    <span class="prop" id="p-dog" style="left:calc(50% - 128px)" hidden>🐕</span>
-    <span class="prop" id="p-guitar" style="left:calc(50% + 72px)" hidden>🎸</span>
-    <span class="prop" id="p-loa" style="left:calc(50% + 106px);bottom:60px" hidden>📢</span>
-    <span class="prop" id="p-phone" style="left:calc(50% - 92px);bottom:78px;font-size:28px" hidden>🤳</span>
+    <span class="prop" id="p-dog" style="left:calc(50% - 100px);bottom:118px;font-size:28px" hidden>🐕</span>
+    <span class="prop" id="p-guitar" style="left:calc(50% + 50px);bottom:118px;font-size:26px" hidden>🎸</span>
+    <span class="prop" id="p-loa" style="left:calc(50% + 74px);bottom:150px;font-size:22px" hidden>📢</span>
+    <span class="prop" id="p-phone" style="left:calc(50% - 82px);bottom:160px;font-size:20px" hidden>🤳</span>
     <button class="beggar" id="beggar" aria-label="Chìa chén xin tiền">
       <svg viewBox="0 0 150 150" aria-hidden="true">
         <ellipse cx="75" cy="142" rx="56" ry="7" fill="#000" opacity=".3"/>
@@ -258,9 +261,15 @@ const ACH=[
  {id:'m1b',nm:'Tỷ phú chén inox',ds:'Tổng xin được 1 tỷ',ok:s=>s.total>=1e9},
  {id:'all',nm:'Đủ bộ đồ nghề',ds:'Mua mỗi món ít nhất 1 lần',ok:s=>UP.every(u=>(s.lv[u.id]||0)>0)},
 ];
-const BEG=['Cho con xin ít vía giàu đi cô ơi!','Anh đẹp trai ơi, cho em xin 1 like... à nhầm, 1 ngàn!','Hôm nay con mới ăn có 3 bữa à...','Cho xin ít tiền mua trà sữa full topping!','Lòng tốt của bạn sẽ được ghi vào sổ Nam Tào!','Có tiền lẻ hông? Tiền chẵn cũng nhận luôn!','Chén còn trống chỗ nè, mời quý khách!','Cho con xin để mua vé số đổi đời!','Tiền đâu, tiền đâu, mau vô chén!','Xin không phải vì nghèo, xin vì đam mê!','Cuối tháng rồi, ai cũng nghèo như nhau mà...'];
+const BEG=["Lạy ông đi qua, lạy bà đi lại, cho con xin ít vía giàu, vía sang, vía đẹp trai!", "Lạy cô bác gần xa, cho con xin miếng lộc, con hứa không xài vô trà sữa... nhiều đâu!", "Một đồng không nhiều, mười đồng không ít, trăm đồng là con khóc luôn á!", "Chén inox sáng bóng đang chờ người tốt bụng nè!", "Xin không phải vì nghèo, xin vì đam mê!", "Tiền vô như nước sông Đà, tiền ra nhỏ giọt như cà phê phin!", "Cho con xin chút đỉnh, Nam Tào ghi sổ, Bắc Đẩu đóng mộc liền!", "Ai cho con một đồng, con chúc người đó cả năm không kẹt xe!", "Cuối tháng rồi, ví con với chén con giống nhau: trống trơn!", "Cho con xin ít vía giàu, con giữ giùm cho, hứa không làm mất!", "Cho con xin để mua vé số, trúng con chia đôi... à chia ba!", "Tiền ơi tiền à, mau mau vô chén, đừng để con chờ lâu!", "Đi ngang không cho cũng được, nhưng cười với con một cái nha!", "Chó Lu nhìn quý khách bằng ánh mắt long lanh nè, nỡ lòng nào đi luôn!", "Không có tiền lẻ thì cho tiền chẵn, con thối lại bằng nụ cười!"];
+const PITCH={"nu": ["{N} xinh đẹp ơi! Nhan sắc ăn đứt hoa hậu rồi, giờ cho em ăn thêm ổ bánh mì nha!", "Trời ơi {n} đi ngang mà em tưởng tiên giáng trần! Tiên cho em xin ít lộc đi!", "{N} cho em xin 1 ngàn, em khen {n} đẹp miễn phí nguyên năm!", "{N} cười một cái là chén em sáng bừng, cho thêm chút là sáng luôn tương lai!", "{N} xinh như mộng, chắc ví cũng dày như mộng ha?", "{N} ơi son đẹp quá trời! Cho em xin tiền mua ổ bánh mì thôi, hông mua son đâu!", "Gió đưa {n} tới đây là có duyên rồi, cho em xin chút lộc giữ duyên nha!"], "nam": ["{N} mạnh mẽ ơi! Tay to vậy chắc nắm được nhiều tiền lắm, chia em chút!", "{N} 6 múi ơi, cho em xin 1 múi... tiền thôi!", "{N} đẹp trai phong độ quá, cho em xin ít vía để mai em đẹp trai giống vậy!", "{N} ơi, đàn ông phải biết thương người yếu đuối... là em nè!", "{N} đi ngang làm vỉa hè rung chuyển, rung luôn cái ví ra chút đi!", "{N} cho em xin đi, em hứa không kể với vợ {n} đâu!", "{N} ngầu dữ vậy, chắc cho tiền cũng ngầu lắm ha!"], "ba": ["Con lạy {n}! {N} đi chậm thôi cho con xin chút lộc, con chúc {n} sống lâu trăm tuổi!", "{N} ơi, nhìn {n} trẻ như mới 18, cho con xin tiền mua kẹo nha!", "{N} ơi, con ngồi đây từ sáng, {n} thương con như cháu nội đi!", "{N} cho con xin, con hứa về ngoan, học giỏi, chăm làm!"], "ong": ["{N} ơi, {n} khỏe như trâu, cho con xin ít sức khỏe với ít tiền luôn!", "Con lạy {n}! {N} phong độ hơn mấy anh trẻ, cho con xin chút lộc nha!", "{N} ơi, hồi xưa chắc {n} cũng từng nghèo ha, thương con chút đi!", "{N} cho con xin, con chịu thua {n} ba ván cờ tướng liền!"], "x": ["{N} ơi, đi ngang cho tui xin ít vía giàu nha!", "{N} dễ thương quá, cho tui xin chút lộc lấy hên!", "Ê {n}! Chén còn trống chỗ nè, ghé chơi đi!", "{N} ơi, gõ !nam hay !nu cho tui biết đường mà khen nha!", "{N} ơi, cho tui xin một nụ cười, có tiền thì càng tốt!"]};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const pitch=(role,n)=>pick(PITCH[role]||PITCH.x).replaceAll('{N}',cap(n)).replaceAll('{n}',n);
+
 const GIVE=['Nè, cầm lấy mua bánh mì.','Thấy dễ thương nên cho nè.','Hôm nay chị trúng số, chia lộc!','Cho nè, nhớ cầu cho chị có bồ.','Thôi cho đó, đừng hát nữa!'];
 const NO=['Tui còn nghèo hơn bạn nữa!','Để chuyển khoản nha... (đợi hoài không thấy ting ting)','Cuối tháng rồi em ơi.','Hông có tiền lẻ, chỉ có nợ.','Lườm một cái rồi đi thẳng.','Tui đang xin bên kia đường nè!','Đưa tui cái chén, tui xin chung!'];
+const NAMES=[["Chị Lan Chi", "nu"], ["Chị Ngọc Hân", "nu"], ["Chị Minh Thư", "nu"], ["Chị Bé Na", "nu"], ["Chị Hai Bán Xôi", "nu"], ["Anh Tuấn Kiệt", "nam"], ["Anh Hải Đăng", "nam"], ["Anh Ba Xe Ôm", "nam"], ["Anh Shipper", "nam"], ["Anh Khoa Gym", "nam"], ["Bà Năm", "ba"], ["Bà Tư Bán Chè", "ba"], ["Ông Tám", "ong"], ["Ông Hai Lúa", "ong"]];
+const EMR={"nam": ["🚶‍♂️", "👨‍💼", "👨‍🍳", "👷‍♂️", "🕺", "🧔"], "nu": ["🚶‍♀️", "👩‍💼", "👩‍🍳", "💃", "👩‍🎓", "👩‍🎤"], "ba": ["👵"], "ong": ["👴"]};
 const PEOPLE=['🚶','🚶‍♀️','👵','👴','🧑‍💼','👩‍🎓','🧑‍🍳','👷','💃','🧑‍🎤'];
 
 const KEY='chen-inox-xin-via-v1';
@@ -284,7 +293,7 @@ muteBtn.onclick=()=>{muted=!muted;setMute();try{localStorage.setItem(KEY+'-mute'
 /* ui helpers */
 const scene=$('#scene');
 const float=(txt,x,y,color)=>{const el=document.createElement('div');el.className='float';el.textContent=txt;el.style.left=x+'px';el.style.top=y+'px';if(color)el.style.color=color;scene.appendChild(el);setTimeout(()=>el.remove(),1000)};
-let bubT;const say=t=>{const b=$('#bubble');b.textContent=t;b.classList.add('on');clearTimeout(bubT);bubT=setTimeout(()=>b.classList.remove('on'),1800)};
+let bubT;const say=t=>{const b=$('#bubble');b.textContent=t;b.classList.add('on');clearTimeout(bubT);bubT=setTimeout(()=>b.classList.remove('on'),Math.max(1800,t.length*55))};
 let toastT;const toast=t=>{const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),2600)};
 const log=t=>{const d=new Date();S.log.unshift([d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0'),t]);S.log=S.log.slice(0,40);if(tab==='log')renderLog()};
 
@@ -307,21 +316,24 @@ let spawnT=0;
 function spawnPasser(){
   const p=document.createElement('button');p.className='passer walk';p.textContent=pick(PEOPLE);p.setAttribute('aria-label','Người đi đường');
   const w=scene.clientWidth, dur=rnd(6,9)*1000, rtl=Math.random()<.5;
-  const ask=document.createElement('span');ask.className='ask';ask.textContent='Xin!';p.appendChild(ask);
-  if(!rtl)p.style.transform='scaleX(-1)',ask.style.transform='translateX(-50%) scaleX(-1)';
+  const ask=document.createElement('span');ask.className='ask';ask.textContent='Xin!';
+  const who=pick(NAMES);p.dataset.role=who[1];p.textContent=pick(EMR[who[1]]);
+  const nm=document.createElement('span');nm.className='pnm';nm.textContent=who[0];
+  const em=document.createElement('span');em.className='pem';em.textContent=p.textContent;p.textContent='';
+  p.append(ask,nm,em);if(!rtl)p.classList.add('flip');
   scene.appendChild(p);
-  const from=rtl?w+10:-60, to=rtl?-60:w+10;
+  const from=rtl?w+10:-110, to=rtl?-110:w+10;
   const anim=p.animate([{left:from+'px'},{left:to+'px'}],{duration:dur,easing:'linear'});
   anim.onfinish=()=>p.remove();
-  p.addEventListener('click',ev=>{ev.stopPropagation();if(p.classList.contains('done'))return;p.classList.add('done');ask.remove();askPerson(p)});
+  p.addEventListener('click',ev=>{ev.stopPropagation();if(p.classList.contains('done'))return;p.classList.add('done');ask.remove();mood(null);say(pitch(p.dataset.role,nm.textContent));setTimeout(()=>askPerson(p),2300)});
 }
 function askPerson(p){
   const r=scene.getBoundingClientRect(), pr=p.getBoundingClientRect();const x=pr.left-r.left, y=pr.top-r.top-10;
   const roll=Math.random();const base=tapPower()+perSec()*2;
   if(roll<.04){const v=base*rnd(40,80);earn(v);S.rich++;S.gifts++;mood('happy',1600);float('+'+fmt(v),x,y,'#47c27a');say('Đại gia: "Cầm hết đi em, anh dư!"');log('Gặp đại gia lì xì '+fmt(v)+'. Quý nhân phù trợ!');blip(523,.1);setTimeout(()=>blip(659,.1),100);setTimeout(()=>blip(784,.2),200)}
-  else if(roll<.5){const v=base*rnd(3,9);earn(v);S.gifts++;mood('happy',900);float('+'+fmt(v),x,y);say(pick(GIVE));coin();if(Math.random()<.25)log('Người đi đường cho '+fmt(v)+'.')}
+  else if(roll<.5){const v=base*rnd(3,9);earn(v);S.gifts++;mood('happy',900);float('+'+fmt(v),x,y);say(p.querySelector('.pnm').textContent+': "'+pick(GIVE)+'"');coin();if(Math.random()<.25)log('Người đi đường cho '+fmt(v)+'.')}
   else if(roll<.66){S.food++;S.gifts++;mood('happy',1200);const item=pick(['🥖 ổ bánh mì','🧋 ly trà sữa','🍌 nải chuối','🍚 hộp cơm tấm']);float(item.split(' ')[0],x,y);say('Được cho '+item.slice(3)+'! No bụng xin hăng gấp đôi.');buff('No bụng: tiền mỗi lần xin x2',10,1,2);log('Được cho '+item.slice(3)+'. Xin hăng gấp đôi 10 giây.');blip(660,.12,'triangle')}
-  else{mood('sad',1500);float(pick(['😒','🙄','💸?','😅']),x,y,'#b9b4cc');say(pick(NO));blip(220,.15,'sawtooth',.03)}
+  else{mood('sad',1500);float(pick(['😒','🙄','💸?','😅']),x,y,'#b9b4cc');say(p.querySelector('.pnm').textContent+': "'+pick(NO)+'"');blip(220,.15,'sawtooth',.03)}
   render();
 }
 
